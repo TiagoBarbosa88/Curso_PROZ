@@ -1,3 +1,7 @@
-console.log('Conexão feita com sucesso!')
-console.log('Conexão feita com sucesso!')
-console.log('Conexão feita com sucesso!')
+function testarConexao() {
+  console.log("Conexão feita com sucesso!");
+}
+
+testarConexao();
+testarConexao();
+testarConexao();
