@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f5f5f5;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .formLogin {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .error {
+      border: 2px solid #d9534f;
+      background-color: #f2dede;
+      color: #a94442;
+    }
+
+    .correct {
+      border: 2px solid #5cb85c;
+      background-color: #dff0d8;
+      color: #4cae4c;
+    }
+
+    .error-text {
+      display: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #a94442;
+    }
+
+    .visible {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <form method="POST" class="formLogin">
+      <a href="../index.html">
+        <img src="../src/logo-projeto//logo-projeto-social.png" id="logo" alt=""></a>
+      <p>Digite os seus dados de acesso no campo abaixo.</p>
+      <label for="login-usuario">E-mail</label>
+      <input type="email" id="login-usuario" name="login-usuario" placeholder="Exemplo@email.com" autofocus="true" required />
+      <p class="error-text" id="usuario-error">Usuário inválido</p>
+
+      <label for="login-senha">Senha</label>
+      <input type="password" id="login-senha" name="login-senha" placeholder="Digite sua senha" required />
+      <p class="error-text" id="senha-error">Senha incorreta</p>
+
+      <a href="/">Esqueci minha senha</a>
+      <button type="button" class="btn" onclick="realizarLogin()">Entrar</button>
+      <button type="button" class="btn btn-cadastrar" onclick="navegarParaCadastro()">Cadastrar</button>
+    </form>
+  </div>
+
+  <script>
+    function realizarLogin() {
+      const emailEmpresa = 'empresa-1@exemplo.com';
+      const senhaEmpresa = '123';
+
+      const emailONG = 'ong-1@exemplo.com';
+      const senhaONG = '123';
+
+      const inputUsuario = document.getElementById('login-usuario');
+      const inputSenha = document.getElementById('login-senha');
+      const usuarioError = document.getElementById('usuario-error');
+      const senhaError = document.getElementById('senha-error');
+
+      // Resetando estilos
+      inputUsuario.classList.remove('error', 'correct');
+      inputSenha.classList.remove('error', 'correct');
+      usuarioError.classList.remove('visible');
+      senhaError.classList.remove('visible');
+
+      // Obtendo valores do formulário
+      const usuario = inputUsuario.value;
+      const senha = inputSenha.value;
+
+      // Lógica para usuário
+      if (usuario === emailEmpresa || usuario === emailONG) {
+        inputUsuario.classList.add('correct');
+      } else {
+        inputUsuario.classList.add('error');
+        usuarioError.classList.add('visible');
+      }
+
+      // Lógica para senha
+      if ((usuario === emailEmpresa && senha === senhaEmpresa) || (usuario === emailONG && senha === senhaONG)) {
+        inputSenha.classList.add('correct');
+        // Adicione aqui a lógica para navegar para a home
+        window.location.href = "/home.html";
+      } else {
+        inputSenha.classList.add('error');
+        senhaError.classList.add('visible');
+      }
+    }
+
+    function navegarParaCadastro() {
+      // Adicione aqui a lógica para navegar para a página de cadastro
+      window.location.href = "/cadastro.html";
+    }
+  </script>
+</body>
+
+</html>
